@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wall -Werror -pedantic -g   CMakeFiles/Snake.dir/main.cpp.o CMakeFiles/Snake.dir/Source/Game.cpp.o CMakeFiles/Snake.dir/Source/Board.cpp.o  -o bin/Snake 

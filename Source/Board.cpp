@@ -6,7 +6,7 @@ void Board::printBoard()
     {
         for(int j = 0; j < BOARD_WIDTH; j++)
         {
-            std::cout << board[i][j];
+            std::cout << board.at(i).at(j);
         }
         std::cout << std::endl;
     }
@@ -50,5 +50,5 @@ void Board::makeFrame()
 
 void Board::setCell(Coord where, const char what)
 {
-    board[where.y][where.x] = what;
+    board.at(where.y).at(where.x) = what;
 }
