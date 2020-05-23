@@ -1,6 +1,7 @@
 #include <iostream>
 #include <array>
 #include <deque>
+#include <random>
 #include "Coord.h"
 
 typedef std::deque<Coord> SnakeBody;
@@ -13,12 +14,17 @@ public:
 
     typedef std::array<std::array<char, BOARD_WIDTH>, BOARD_HEIGHT> GameBoardArray;
 
+    GameBoardArray _board;
     void printBoard();
-    void putSnake(SnakeBody snake);
+    void putSnake(const SnakeBody&);
     void initializeBoard();
+    void setCell(const Coord&, const char);
+    bool isEmpty(const Coord&);
+    bool isBody(const Coord&);
+    bool isApple(const Coord&);
+    bool isWall(const Coord&);
+    void addApple();
 
 private:
     void makeFrame();
-    void setCell(Coord, char);
-    GameBoardArray board;
 };

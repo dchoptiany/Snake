@@ -7,4 +7,9 @@ struct Coord
 
     unsigned x;
     unsigned y;
+
+    bool operator==(const Coord& rhs) const
+    {
+        return (x == rhs.x) && (y == rhs.y);
+    }
 };

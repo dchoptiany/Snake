@@ -2,7 +2,8 @@
 
 int main()
 {
-    Game game;
+    Board board;
+    Game game(board);
     game.setup();
     game.play();
 }

@@ -15,15 +15,22 @@ public:
         None
     };
 
+    void setup();
+    void play();
+
+    explicit Game(Board board)
+            :board(board), gameOver(false), direction(Direction::Up), score(0)
+    {
+    }
+    ~Game() = default;
+
+private:
     Board board;
     SnakeBody snake;
     bool gameOver;
-    Game::Direction direction = Game::Direction::None;
+    Direction direction;
+    unsigned score;
 
-    void setup();
-    void play();
+    static char getch();
     Direction getDirection();
-
-private:
-    char getch();
 };
