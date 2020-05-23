@@ -1,7 +1,8 @@
-#include "Board.h"
 #include <termios.h>
 #include <unistd.h>
 #include <termios.h>
+#include <fstream>
+#include "Board.hpp"
 
 class Game
 {
@@ -18,10 +19,7 @@ public:
     void setup();
     void play();
 
-    explicit Game(Board board)
-            :board(board), gameOver(false), direction(Direction::Up), score(0)
-    {
-    }
+    explicit Game(const Board&);
     ~Game() = default;
 
 private:
@@ -30,7 +28,11 @@ private:
     bool gameOver;
     Direction direction;
     unsigned score;
+    unsigned highscore;
 
     static char getch();
     Direction getDirection();
+    static unsigned loadHighscore();
+    void saveHighscore() const;
+    void reset();
 };

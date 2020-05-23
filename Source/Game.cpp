@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "Game.hpp"
 
 char Game::getch()
 {
@@ -26,6 +26,10 @@ char Game::getch()
 void Game::setup()
 {
     board.initializeBoard();
+    gameOver = false;
+    direction = Direction::Up;
+    score = 0;
+    highscore = loadHighscore();
 
     snake.push_front(Coord(5, 8));
     snake.push_front(Coord(5, 7));
@@ -173,7 +177,90 @@ void Game::play()
         board.putSnake(snake);
         board.printBoard();
         std::cout << "Score: " << score << std::endl;
+        std::cout << "Highscore: " << highscore << std::endl;
     }
+
+    system("clear");
     std::cout << "Game over!" << std::endl;
     std::cout << "Your score: " << score << std::endl;
+
+    if(score > highscore)
+    {
+        std::cout << "New highscore!" << std::endl;
+        highscore = score;
+        saveHighscore();
+    }
+    else
+    {
+        std::cout << "Highscore: " << highscore << std::endl;
+    }
+
+    std::cout << std::endl << "Would you like to play again? (Y/N)" << std::endl;
+
+    char choice;
+
+    while(true)
+    {
+        choice = getch();
+        switch(tolower(choice))
+        {
+            case 'y':
+            {
+                reset();
+            }
+            case 'n':
+            {
+                std::cout << "Bye!" << std::endl;
+                exit(0);
+            }
+            default:
+            {
+                break;
+            }
+        }
+    }
+}
+
+unsigned Game::loadHighscore()
+{
+    std::fstream fin("../../data/highscore.txt", std::ios::in);
+
+    unsigned temp;
+
+    if(fin.good())
+    {
+        fin >> temp;
+        return temp;
+    }
+    else
+    {
+        std::cout << "Could not load highscore" << std::endl;
+        return 0;
+    }
+}
+
+void Game::saveHighscore() const
+{
+    std::fstream fout("../../data/highscore.txt", std::ios::out);
+
+    if(fout.good())
+    {
+        fout << highscore << "\n";
+    }
+    else
+    {
+        std::cout << "Could not save highscore" << std::endl;
+    }
+}
+
+void Game::reset()
+{
+    snake.clear();
+    setup();
+    play();
+}
+
+Game::Game(const Board& _board)
+{
+    board = _board;
 }

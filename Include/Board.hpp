@@ -2,7 +2,7 @@
 #include <array>
 #include <deque>
 #include <random>
-#include "Coord.h"
+#include "Coord.hpp"
 
 typedef std::deque<Coord> SnakeBody;
 
@@ -18,7 +18,7 @@ public:
     void printBoard();
     void putSnake(const SnakeBody&);
     void initializeBoard();
-    void setCell(const Coord&, const char);
+    void setCell(const Coord&, char);
     bool isEmpty(const Coord&);
     bool isBody(const Coord&);
     bool isApple(const Coord&);
