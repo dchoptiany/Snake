@@ -1,3 +1,6 @@
+#ifndef GAME
+#define GAME
+
 #include <termios.h>
 #include <unistd.h>
 #include <termios.h>
@@ -36,3 +39,5 @@ private:
     void saveHighscore() const;
     void reset();
 };
+
+#endif

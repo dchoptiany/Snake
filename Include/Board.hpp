@@ -1,3 +1,6 @@
+#ifndef BOARD
+#define BOARD
+
 #include <iostream>
 #include <array>
 #include <deque>
@@ -28,3 +31,5 @@ public:
 private:
     void makeFrame();
 };
+
+#endif
